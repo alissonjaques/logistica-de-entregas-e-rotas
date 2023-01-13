@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Simple_Blue" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="38f91858-128c-4506-aa1f-c85012d508b4">
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[YmRfbG9naXN0aWNhLm1vdG9yaXN0YSBBUyAsMTEyLDEwNSxiNDVlZTVjMC03NzEyLTQ3MzEtYmUx
+MS0zMTU5YmY1MGEzYWM7]]>
+	</property>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="conexao_logistica"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT idmotorista,
+	nome,
+	cnh,
+	idade
+FROM bd_logistica.motorista]]>
+	</queryString>
+	<field name="idmotorista" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idmotorista"/>
+		<property name="com.jaspersoft.studio.field.label" value="idmotorista"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="motorista"/>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="motorista"/>
+	</field>
+	<field name="cnh" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cnh"/>
+		<property name="com.jaspersoft.studio.field.label" value="cnh"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="motorista"/>
+	</field>
+	<field name="idade" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idade"/>
+		<property name="com.jaspersoft.studio.field.label" value="idade"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="motorista"/>
+	</field>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{idmotorista}]]></groupExpression>
+		<groupHeader>
+			<band height="26">
+				<textField textAdjust="StretchHeight">
+					<reportElement x="340" y="5" width="95" height="20" uuid="1771907c-95ed-479c-9700-8b6076559e36">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="73cceb8c-4fcc-46de-96b8-2763952f8a86"/>
+					</reportElement>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cnh}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight">
+					<reportElement x="450" y="5" width="105" height="20" uuid="3b273fad-71ab-4940-90e3-64087a6b1441">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c35c137d-62ba-44df-bf86-30063c9320d6"/>
+					</reportElement>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{idade}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight">
+					<reportElement x="180" y="5" width="120" height="20" uuid="93663820-7314-41e5-a49b-13b270114e0c">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2d5c4d5d-524f-490b-8639-b865bed64df5"/>
+					</reportElement>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight">
+					<reportElement x="0" y="5" width="120" height="20" uuid="3a2b7db2-1143-4bc2-99e7-a96a3113c516">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2d5c4d5d-524f-490b-8639-b865bed64df5"/>
+					</reportElement>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{idmotorista}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="a7870a92-4652-46ad-96f5-4c188b51be58"/>
+				<staticText>
+					<reportElement x="100" y="20" width="410" height="43" forecolor="#FFFFFF" uuid="7933c27d-2f3f-4974-b3fc-6587cd043a93"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Motoristas Cadastrados]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="24">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="48dcbcfa-43f0-4667-ad6b-3eb1e7c7b2c2"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="180" y="0" width="120" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="258784f0-82c6-4d49-a582-7b427ed0854c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2d5c4d5d-524f-490b-8639-b865bed64df5"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="340" y="0" width="95" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a43b93f8-1ffd-4466-ae0d-c502242f4100">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="73cceb8c-4fcc-46de-96b8-2763952f8a86"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CNH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="450" y="0" width="105" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="71a95952-c0b0-43d3-a542-afa39b65fdfc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c35c137d-62ba-44df-bf86-30063c9320d6"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Idade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="120" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="3d41d646-23a1-4790-926d-9231added532">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2d5c4d5d-524f-490b-8639-b865bed64df5"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-30" y="20" width="595" height="1" forecolor="#666666" uuid="765b9391-041b-4dc3-b89c-ff3676c46aa4"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="8becb685-d6f3-4502-ac19-72039095cea2"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="8151e9a1-72d4-4c3c-a48e-8166e5ba5584"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="ee536252-f068-418a-be53-dc91a6e65323"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="a9d5c28a-f0c8-41c2-8d07-e689f80df86f"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
