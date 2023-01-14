@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import br.com.aj_sistemas.logistica.model.RotaModel;
 import br.com.aj_sistemas.logistica.utils.GeradorDeRelatorio;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -17,21 +18,22 @@ public class RotaView extends javax.swing.JInternalFrame {
      * Creates new form RotaView
      */
     public RotaView() {
+        this.setFrameIcon(new ImageIcon("src\\br\\com\\aj_sistemas\\logistica\\img\\truck-icon.png"));
         initComponents();
         preencherTabela();
     }
 
-    public void preencherTabela() {
+    private void preencherTabela() {
         RotaController controle = new RotaController();
         ArrayList<RotaModel> lista = controle.selecionarTodos();
         DefaultTableModel modelo = (DefaultTableModel) getJtRota().getModel();
         modelo.setRowCount(0);
-        for (RotaModel f : lista) {
+        lista.forEach((f) -> {
             modelo.addRow(new Object[]{
                 f.getIdRota(),
                 f.getDescricao()
             });
-        }
+        });
     }
 
     public void limparCampos() {
@@ -44,19 +46,13 @@ public class RotaView extends javax.swing.JInternalFrame {
     public boolean verificarCampos() {
         if (getJtxIdRota().getText().equals("")) {
             return true;
-        } else if (getJtxDescricao().getText().equals("")) {
-            return true;
         } else {
-            return false;
+            return getJtxDescricao().getText().equals("");
         }
     }
 
     public boolean verifica() {
-        if (getJtxDescricao().getText().equals("")) {
-            return true;
-        } else {
-            return false;
-        }
+        return getJtxDescricao().getText().equals("");
     }
 
     public void requisitaFoco() {
@@ -73,10 +69,8 @@ public class RotaView extends javax.swing.JInternalFrame {
         } else {
             RotaController controle = new RotaController();
             ArrayList<RotaModel> lista = controle.selecionarTodos();
-            for (RotaModel rota : lista) {
-                if (rota.getIdRota() == Integer.parseInt(idRota)) {
-                    return true;
-                }
+            if (lista.stream().anyMatch((rota) -> (rota.getIdRota() == Integer.parseInt(idRota)))) {
+                return true;
             }
         }
         return false;
@@ -313,7 +307,7 @@ public class RotaView extends javax.swing.JInternalFrame {
                     motorista.setIdRota(Integer.parseInt(getJtxIdRota().getText()));
                 }
                 motorista.setDescricao(getJtxDescricao().getText());
-               
+
                 RotaController controle = new RotaController();
                 if (getJtxIdRota().getText().equals("")) {
                     if (controle.inserirComProcedure(motorista)) {
@@ -343,7 +337,7 @@ public class RotaView extends javax.swing.JInternalFrame {
             RotaModel motorista = new RotaModel();
             motorista.setIdRota(Integer.parseInt(getJtxIdRota().getText()));
             motorista.setDescricao(getJtxDescricao().getText());
-            
+
             RotaController controle = new RotaController();
             if (controle.editarComProcedure(motorista)) {
                 JOptionPane.showMessageDialog(this, "Editado com sucesso!");
@@ -412,7 +406,11 @@ public class RotaView extends javax.swing.JInternalFrame {
 
     private void jbRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRelatorioActionPerformed
         GeradorDeRelatorio r = new GeradorDeRelatorio();
-        r.relatorio("src\\relatorios\\RelatorioRotas", "", "");
+        try {
+            r.relatorio("RelatorioRotas", "", "");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Alerta", 2);
+        }
     }//GEN-LAST:event_jbRelatorioActionPerformed
 
     private void jtRotaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtRotaMouseClicked
@@ -425,7 +423,7 @@ public class RotaView extends javax.swing.JInternalFrame {
         getJbSelecionar().setEnabled(false);
         int linha = getJtRota().getSelectedRow();
         getJtxIdRota().setText(String.valueOf(getJtRota().getValueAt(linha, 0)));
-        getJtxDescricao().setText(String.valueOf(getJtRota().getValueAt(linha, 1)));       
+        getJtxDescricao().setText(String.valueOf(getJtRota().getValueAt(linha, 1)));
     }//GEN-LAST:event_jtRotaMouseClicked
 
     private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed

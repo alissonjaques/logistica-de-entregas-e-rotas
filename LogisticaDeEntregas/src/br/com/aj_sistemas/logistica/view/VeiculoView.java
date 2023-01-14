@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import br.com.aj_sistemas.logistica.model.VeiculoModel;
 import br.com.aj_sistemas.logistica.utils.GeradorDeRelatorio;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -20,6 +21,7 @@ public class VeiculoView extends javax.swing.JInternalFrame {
      * Creates new form VeiculoView
      */
     public VeiculoView() {
+        this.setFrameIcon(new ImageIcon("src\\br\\com\\aj_sistemas\\logistica\\img\\truck-icon.png"));
         initComponents();
         preencherTabela();
         MotoristaController controle = new MotoristaController();
@@ -27,26 +29,26 @@ public class VeiculoView extends javax.swing.JInternalFrame {
         preencherJComboBox();
     }
 
-    public void preencherJComboBox() {
+    private void preencherJComboBox() {
         for (int linha = 0; linha < getMotoristas().size(); linha++) {
             //adicionando a categoria no combo
             getJcbMotorista().addItem(getMotoristas().get(linha));
         }
     }
 
-    public void preencherTabela() {
+    private void preencherTabela() {
         VeiculoController controle = new VeiculoController();
         ArrayList<VeiculoModel> lista = controle.selecionaView();
         DefaultTableModel modelo = (DefaultTableModel) getJtVeiculo().getModel();
         modelo.setRowCount(0);
-        for (VeiculoModel f : lista) {
+        lista.forEach((f) -> {
             modelo.addRow(new Object[]{
                 f.getIdVeiculo(),
                 f.getModelo(),
                 f.getPlaca(),
                 f.getMotorista().getNome()
             });
-        }
+        });
     }
 
     public void limparCampos() {
@@ -67,10 +69,8 @@ public class VeiculoView extends javax.swing.JInternalFrame {
             return true;
         } else if (getJtxPlaca().getText().equals("")) {
             return true;
-        } else if (getJcbMotorista().getSelectedItem().equals("")) {
-            return true;
         } else {
-            return false;
+            return getJcbMotorista().getSelectedItem().equals("");
         }
     }
 
@@ -79,10 +79,8 @@ public class VeiculoView extends javax.swing.JInternalFrame {
             return true;
         } else if (getJtxPlaca().getText().equals("")) {
             return true;
-        } else if (getJcbMotorista().getSelectedIndex() == -1) {
-            return true;
         } else {
-            return false;
+            return getJcbMotorista().getSelectedIndex() == -1;
         }
     }
 
@@ -104,10 +102,8 @@ public class VeiculoView extends javax.swing.JInternalFrame {
         } else {
             VeiculoController controle = new VeiculoController();
             ArrayList<VeiculoModel> lista = controle.selecionarTodos();
-            for (VeiculoModel veiculo : lista) {
-                if (veiculo.getIdVeiculo() == Integer.parseInt(idVeiculo)) {
-                    return true;
-                }
+            if (lista.stream().anyMatch((veiculo) -> (veiculo.getIdVeiculo() == Integer.parseInt(idVeiculo)))) {
+                return true;
             }
         }
 
@@ -507,7 +503,11 @@ public class VeiculoView extends javax.swing.JInternalFrame {
 
     private void jbRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRelatorioActionPerformed
         GeradorDeRelatorio r = new GeradorDeRelatorio();
-        r.relatorio("src\\relatorios\\RelatorioVeiculos", "", "");
+        try {
+            r.relatorio("RelatorioVeiculos", "", "");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Alerta", 2);
+        }
     }//GEN-LAST:event_jbRelatorioActionPerformed
 
     private void jtVeiculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtVeiculoMouseClicked

@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import br.com.aj_sistemas.logistica.model.VeiculoRotaModel;
 import javax.swing.JOptionPane;
 import br.com.aj_sistemas.logistica.utils.GeradorDeRelatorio;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -27,6 +28,7 @@ public class VeiculoRotaView extends javax.swing.JInternalFrame {
      * Creates new form VeiculoRotaView
      */
     public VeiculoRotaView() {
+        this.setFrameIcon(new ImageIcon("src\\br\\com\\aj_sistemas\\logistica\\img\\truck-icon.png"));
         initComponents();
         preencherTabela();
         RotaController controle = new RotaController();
@@ -36,7 +38,7 @@ public class VeiculoRotaView extends javax.swing.JInternalFrame {
         preencherJComboBox();
     }
 
-    public void preencherJComboBox() {
+    private void preencherJComboBox() {
         for (int linha = 0; linha < getRotas().size(); linha++) {
             getJcbRota().addItem(getRotas().get(linha));
         }
@@ -45,18 +47,18 @@ public class VeiculoRotaView extends javax.swing.JInternalFrame {
         }
     }
 
-    public void preencherTabela() {
+    private void preencherTabela() {
         VeiculoRotaController controle = new VeiculoRotaController();
         ArrayList<VeiculoRotaModel> lista = controle.selecionaView();
         DefaultTableModel modelo = (DefaultTableModel) getJtVeiculoRota().getModel();
         modelo.setRowCount(0);
-        for (VeiculoRotaModel f : lista) {
+        lista.forEach((f) -> {
             modelo.addRow(new Object[]{
                 f.getIdVeiculoRota(),
                 f.getVeiculo().getPlaca(),
                 f.getRota().getDescricao()
             });
-        }
+        });
     }
 
     public void limparCampos() {
@@ -72,21 +74,13 @@ public class VeiculoRotaView extends javax.swing.JInternalFrame {
             return true;
         } else if (getJcbRota().getSelectedItem().equals("")) {
             return true;
-        } else if (getJcbVeiculo().getSelectedItem().equals("")) {
-            return true;
-        } else {
-            return false;
-        }
+        } else return getJcbVeiculo().getSelectedItem().equals("");
     }
 
     public boolean verifica() {
         if (getJcbRota().getSelectedIndex() == -1) {
             return true;
-        } else if (getJcbVeiculo().getSelectedIndex() == -1) {
-            return true;
-        } else {
-            return false;
-        }
+        } else return getJcbVeiculo().getSelectedIndex() == -1;
     }
 
     public void requisitaFoco() {
@@ -105,10 +99,8 @@ public class VeiculoRotaView extends javax.swing.JInternalFrame {
         } else {
             VeiculoRotaController controle = new VeiculoRotaController();
             ArrayList<VeiculoRotaModel> lista = controle.selecionarTodos();
-            for (VeiculoRotaModel veiculoRota : lista) {
-                if (veiculoRota.getIdVeiculoRota() == Integer.parseInt(idVeiculo)) {
-                    return true;
-                }
+            if (lista.stream().anyMatch((veiculoRota) -> (veiculoRota.getIdVeiculoRota() == Integer.parseInt(idVeiculo)))) {
+                return true;
             }
         }
 
@@ -488,7 +480,11 @@ public class VeiculoRotaView extends javax.swing.JInternalFrame {
 
     private void jbRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRelatorioActionPerformed
         GeradorDeRelatorio r = new GeradorDeRelatorio();
-        r.relatorio("src\\relatorios\\RelatorioVeiculosRotas", "", "");
+        try {
+            r.relatorio("RelatorioVeiculosRotas", "", "");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Alerta", 2);
+        }
     }//GEN-LAST:event_jbRelatorioActionPerformed
 
     private void jtVeiculoRotaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtVeiculoRotaMouseClicked

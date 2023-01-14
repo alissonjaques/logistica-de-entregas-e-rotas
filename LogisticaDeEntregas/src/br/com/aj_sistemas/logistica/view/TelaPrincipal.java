@@ -1,7 +1,12 @@
 package br.com.aj_sistemas.logistica.view;
 
+import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -19,7 +24,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
+        this.setIconImage(Toolkit.getDefaultToolkit()
+                .getImage("src\\br\\com\\aj_sistemas\\logistica\\img\\truck-icon.png"));
         initComponents();
+        String lookAndFeelClassName = UIManager.getSystemLookAndFeelClassName();
+        try {
+            UIManager.setLookAndFeel(lookAndFeelClassName);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            JOptionPane.showMessageDialog(this, "Erro ao aplicar layout do sistema operacional. Descrição do erro: "
+                    + ex.getMessage(), "Alerta", 2);
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void centralizarJInternalFrame(JInternalFrame frame) {

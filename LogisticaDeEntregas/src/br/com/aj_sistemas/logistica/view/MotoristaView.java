@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import br.com.aj_sistemas.logistica.model.MotoristaModel;
 import br.com.aj_sistemas.logistica.utils.GeradorDeRelatorio;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -17,23 +18,24 @@ public class MotoristaView extends javax.swing.JInternalFrame {
      * Creates new form MotoristaView
      */
     public MotoristaView() {
+        this.setFrameIcon(new ImageIcon("src\\br\\com\\aj_sistemas\\logistica\\img\\truck-icon.png"));
         initComponents();
         preencherTabela();
     }
 
-    public void preencherTabela() {
+    private void preencherTabela() {
         MotoristaController controle = new MotoristaController();
         ArrayList<MotoristaModel> lista = controle.selecionarTodos();
         DefaultTableModel modelo = (DefaultTableModel) getJtMotorista().getModel();
         modelo.setRowCount(0);
-        for (MotoristaModel f : lista) {
+        lista.forEach((f) -> {
             modelo.addRow(new Object[]{
                 f.getIdMotorista(),
                 f.getNome(),
                 f.getCnh(),
                 f.getIdade()
             });
-        }
+        });
     }
 
     public void limparCampos() {
@@ -66,11 +68,7 @@ public class MotoristaView extends javax.swing.JInternalFrame {
             return true;
         } else if (getJtxCNH().getText().equals("")) {
             return true;
-        } else if (getJtxIdade().getText().equals("")) {
-            return true;
-        } else {
-            return false;
-        }
+        } else return getJtxIdade().getText().equals("");
     }
 
     public void requisitaFoco() {
@@ -91,10 +89,8 @@ public class MotoristaView extends javax.swing.JInternalFrame {
         } else {
             MotoristaController controle = new MotoristaController();
             ArrayList<MotoristaModel> lista = controle.selecionarTodos();
-            for (MotoristaModel motorista : lista) {
-                if (motorista.getIdMotorista() == Integer.parseInt(idMotorista)) {
-                    return true;
-                }
+            if (lista.stream().anyMatch((motorista) -> (motorista.getIdMotorista() == Integer.parseInt(idMotorista)))) {
+                return true;
             }
         }
 
@@ -487,7 +483,11 @@ public class MotoristaView extends javax.swing.JInternalFrame {
 
     private void jbRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRelatorioActionPerformed
         GeradorDeRelatorio r = new GeradorDeRelatorio();
-        r.relatorio("src\\relatorios\\RelatorioMotoristasCadastrados", "", "");
+        try{
+            r.relatorio("RelatorioMotoristasCadastrados", "", "");
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Alerta", 2);            
+        }        
     }//GEN-LAST:event_jbRelatorioActionPerformed
 
     private void jtMotoristaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtMotoristaMouseClicked

@@ -22,6 +22,8 @@ public class TelaDeLogin extends javax.swing.JDialog {
     
     /**
      * Creates new form TelaDeLogin
+     * @param parent
+     * @param modal
      */
     public TelaDeLogin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);

@@ -5,7 +5,6 @@
  */
 package br.com.aj_sistemas.logistica.view;
 
-import br.com.aj_sistemas.logistica.controller.MotoristaController;
 import br.com.aj_sistemas.logistica.controller.PacoteController;
 import br.com.aj_sistemas.logistica.controller.VeiculoController;
 import java.util.ArrayList;
@@ -13,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import br.com.aj_sistemas.logistica.model.PacoteModel;
 import br.com.aj_sistemas.logistica.utils.GeradorDeRelatorio;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -26,6 +26,7 @@ public class PacoteView extends javax.swing.JInternalFrame {
      * Creates new form PacoteView
      */
     public PacoteView() {
+        this.setFrameIcon(new ImageIcon("src\\br\\com\\aj_sistemas\\logistica\\img\\truck-icon.png"));
         initComponents();
         preencherTabela();
         VeiculoController controle = new VeiculoController();
@@ -33,19 +34,19 @@ public class PacoteView extends javax.swing.JInternalFrame {
         preencherJComboBox();
     }
 
-    public void preencherJComboBox() {
+    private void preencherJComboBox() {
         for (int linha = 0; linha < getVeiculos().size(); linha++) {
             //adicionando a categoria no combo
             getJcbVeiculo().addItem(getVeiculos().get(linha));
         }
     }
 
-    public void preencherTabela() {
+    private void preencherTabela() {
         PacoteController controle = new PacoteController();
         ArrayList<PacoteModel> lista = controle.selecionaView();
         DefaultTableModel placa = (DefaultTableModel) getJtPacote().getModel();
         placa.setRowCount(0);
-        for (PacoteModel f : lista) {
+        lista.forEach((f) -> {
             placa.addRow(new Object[]{
                 f.getIdPacote(),
                 f.getDescricao(),
@@ -54,7 +55,7 @@ public class PacoteView extends javax.swing.JInternalFrame {
                 f.getDestinatario(),
                 f.getVeiculo().getPlaca()
             });
-        }
+        });
     }
 
     public void limparCampos() {
@@ -81,11 +82,7 @@ public class PacoteView extends javax.swing.JInternalFrame {
             return true;
         } else if (getJtxDestinatario().getText().equals("")) {
             return true;
-        } else if (getJcbVeiculo().getSelectedItem().equals("")) {
-            return true;
-        } else {
-            return false;
-        }
+        } else return getJcbVeiculo().getSelectedItem().equals("");
     }
 
     public boolean verifica() {
@@ -97,11 +94,7 @@ public class PacoteView extends javax.swing.JInternalFrame {
             return true;
         } else if (getJtxDestinatario().getText().equals("")) {
             return true;
-        } else if (getJcbVeiculo().getSelectedIndex() == -1) {
-            return true;
-        } else {
-            return false;
-        }
+        } else return getJcbVeiculo().getSelectedIndex() == -1;
     }
 
     public void requisitaFoco() {
@@ -126,10 +119,8 @@ public class PacoteView extends javax.swing.JInternalFrame {
         } else {
             PacoteController controle = new PacoteController();
             ArrayList<PacoteModel> lista = controle.selecionarTodos();
-            for (PacoteModel pacote : lista) {
-                if (pacote.getIdPacote() == Integer.parseInt(idPacote)) {
-                    return true;
-                }
+            if (lista.stream().anyMatch((pacote) -> (pacote.getIdPacote() == Integer.parseInt(idPacote)))) {
+                return true;
             }
         }
 
@@ -573,7 +564,11 @@ public class PacoteView extends javax.swing.JInternalFrame {
 
     private void jbRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRelatorioActionPerformed
         GeradorDeRelatorio r = new GeradorDeRelatorio();
-        r.relatorio("src\\relatorios\\RelatorioPacotes", "", "");
+        try{
+            r.relatorio("RelatorioPacotes", "", "");
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Alerta", 2);            
+        }   
     }//GEN-LAST:event_jbRelatorioActionPerformed
 
     private void jtVeiculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtVeiculoMouseClicked
