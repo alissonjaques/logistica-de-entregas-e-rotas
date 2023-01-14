@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioRotas" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="810cfae7-fdf5-4513-a5df-965172ec0d63">
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[YmRfbG9naXN0aWNhLnJvdGEgQVMgLDcyLDEzOSw3YzQzYzczZS00Yjg4LTQ1YTItYWJhMy02NGVk
+MTA5ZDZiZTc7]]>
+	</property>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="conexao_logistica"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT idrota,
+	descricao
+FROM bd_logistica.rota]]>
+	</queryString>
+	<field name="idrota" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idrota"/>
+		<property name="com.jaspersoft.studio.field.label" value="idrota"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rota"/>
+	</field>
+	<field name="descricao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="descricao"/>
+		<property name="com.jaspersoft.studio.field.label" value="descricao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rota"/>
+	</field>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{idrota}]]></groupExpression>
+		<groupHeader>
+			<band height="7"/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="843f7b8e-f4ff-4f8a-8375-d8aa932fa189"/>
+				<staticText>
+					<reportElement x="180" y="20" width="250" height="43" forecolor="#FFFFFF" uuid="15613553-2928-4ea5-abba-7de47d8cf244"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Tipos de Rotas]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="1a18ae56-ddbb-437e-b519-49cef6679e8a"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="390" y="0" width="165" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="ded52f2e-d75b-4787-bf62-b2087601c9ff">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1bf4707d-7a1a-41b8-a569-186708338f09"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descrição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="40" y="0" width="165" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="820429bd-73ad-4603-89b5-3ff1f6b80f93">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1bf4707d-7a1a-41b8-a569-186708338f09"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Id Rota]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="37">
+			<textField textAdjust="StretchHeight">
+				<reportElement x="390" y="0" width="165" height="20" uuid="f83b107d-ace1-4341-811a-958614940aa6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1bf4707d-7a1a-41b8-a569-186708338f09"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="40" y="-1" width="165" height="20" uuid="b4e9acaa-976e-4ea4-81fb-f914bb62339b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1bf4707d-7a1a-41b8-a569-186708338f09"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idrota}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-20" y="33" width="595" height="1" forecolor="#666666" uuid="dfaafdf0-f3a2-4618-bcbe-b195fdbf28d1"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="258f1ad5-f7c5-4f70-bf9f-ba330d0b0ee4"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="7379fc26-ba20-4f11-83fa-316055cb7ba3"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="a2484704-dad4-4ad1-9ed6-4c791ee08281"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
