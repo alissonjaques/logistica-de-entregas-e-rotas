@@ -25,3 +25,16 @@ Para o banco de dados:
 
 Para todas as entidades implementar o CRUD (Create, Read, Update e Delete) completo, salvo algumas exceções;
 Utilizar esses itens do banco de dados na implementação da aplicação.
+
+# Configurar aplicação:
+
+* Execute todos os comandos SQL em um ambiente MySQL (atenção para os relacionamentos, triggers, views e procedures);
+* Importe todas as bibliotecas necessárias no arquivo Bibliotecas;
+* A senha e usuário para logar no app: admin;
+* Configure o acesso a base de dados na classe Conexao, de acordo com suas credenciais;
+
+# Imagens da aplicação funcionando:
+
+![alt text](https://github.com/alissonjaques/logistica-de-entregas-e-rotas/blob/main/Imagens/principal.png)
+![alt text](https://github.com/alissonjaques/logistica-de-entregas-e-rotas/blob/main/Imagens/login.png)
+![alt text](https://github.com/alissonjaques/logistica-de-entregas-e-rotas/blob/main/Imagens/cadastro.png)
