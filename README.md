@@ -35,6 +35,6 @@ Utilizar esses itens do banco de dados na implementação da aplicação.
 
 # Imagens da aplicação funcionando:
 
-![alt text](https://github.com/alissonjaques/logistica-de-entregas-e-rotas/blob/main/Imagens/principal.png)
-![alt text](https://github.com/alissonjaques/logistica-de-entregas-e-rotas/blob/main/Imagens/login.png)
-![alt text](https://github.com/alissonjaques/logistica-de-entregas-e-rotas/blob/main/Imagens/cadastro.png)
+![alt text](https://github.com/alissonjaques/logistica-de-entregas-e-rotas/blob/main/Imagens/principal.png#vitrinedev)
+![alt text](https://github.com/alissonjaques/logistica-de-entregas-e-rotas/blob/main/Imagens/login.png#vitrinedev)
+![alt text](https://github.com/alissonjaques/logistica-de-entregas-e-rotas/blob/main/Imagens/cadastro.png#vitrinedev)
