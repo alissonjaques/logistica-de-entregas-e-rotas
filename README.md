@@ -2,6 +2,11 @@
 
 TEMA: Logística - EXIGÊNCIAS MÍNIMAS: Cadastro de veículos de entrega, pacotes e motoristas e a junção de todos esses itens em uma rota de entrega de pacotes.
 
+| :placard: Vitrine.Dev |     |
+| -------------  | --- |
+| :sparkles: Nome        | **Logística de entregas e rotas**
+| :label: Tecnologias | java, jasper reports, java swing, sql, mysql
+
 Primeira Etapa: Documentação com a explanação do problema a ser desenvolvido. A documentação deverá conter:
 * Capa
 * Resumo dos requisitos que serão implementados no problema;
